@@ -1,3 +1,4 @@
+
 import { DatePipe } from '@angular/common';
 import { Component, inject, signal } from '@angular/core';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -9,7 +10,7 @@ import { CheckoutService } from '../../services/checkout.service';
 
 @Component({
   selector: 'app-checkout-page',
-  imports: [DatePipe, RouterLink, OrderSummaryComponent],
+  imports: [DatePipe, RouterLink, OrderSummaryComponent, ReactiveFormsModule],
   templateUrl: './checkout-page.container.html',
   styleUrl: './checkout-page.container.css',
 })
@@ -33,6 +34,7 @@ export class CheckoutPageContainer {
       this.form.markAllAsTouched();
       return;
     }
+
     const { agree, ...customer } = this.form.getRawValue();
     this.order.set(this.checkout.placeOrder(customer));
   }
