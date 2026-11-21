@@ -1,3 +1,4 @@
+
 <article class="card" [appHighlight]="'#e8f5e9'" [class.outofstock]="!product().inStock">
   <h3>{{ product().title }}</h3>
   <span class="category">{{ product().category | titlecase }}</span>
@@ -14,6 +15,6 @@
 
   <div class="actions">
     <button type="button" class="secondary" (click)="viewDetails.emit(product().id)">დეტალები</button>
-    <button type="button" [disabled]="product().inStock" (click)="addToCart.emit(product().id)">კალათაში</button>
+    <button type="button" [disabled]="!product().inStock" (click)="addToCart.emit(product())">კალათაში</button>
   </div>
 </article>
