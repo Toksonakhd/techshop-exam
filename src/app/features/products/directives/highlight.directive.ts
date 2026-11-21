@@ -1,3 +1,4 @@
+
 import { Directive, HostBinding, HostListener, input, signal } from '@angular/core';
 
 @Directive({ selector: '[appHighlight]' })
@@ -17,6 +18,6 @@ export class HighlightDirective {
 
   @HostListener('mouseleave')
   onLeave(): void {
-    this.hovered.set(true);
+    this.hovered.set(false);
   }
 }
