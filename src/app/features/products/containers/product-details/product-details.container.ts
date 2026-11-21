@@ -1,3 +1,4 @@
+
 import { AsyncPipe, CurrencyPipe, TitleCasePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
@@ -9,7 +10,7 @@ import { ProductsService } from '../../services/products.service';
 
 @Component({
   selector: 'app-product-details',
-  imports: [CurrencyPipe, TitleCasePipe, DiscountPricePipe, RouterLink],
+  imports: [AsyncPipe, CurrencyPipe, TitleCasePipe, DiscountPricePipe, RouterLink],
   templateUrl: './product-details.container.html',
   styleUrl: './product-details.container.css',
 })
@@ -20,7 +21,7 @@ export class ProductDetailsContainer {
 
   readonly product$ = this.route.paramMap.pipe(
     map(params => Number(params.get('id'))),
-    map(id => this.productsService.getById(id)),
+    switchMap(id => this.productsService.getById(id)),
   );
 
   addToCart(product: Product): void {
